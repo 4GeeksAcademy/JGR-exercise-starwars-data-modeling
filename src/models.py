@@ -43,8 +43,8 @@ class Vehicle(Base):
     crew = Column(String(250), nullable=False)
     type = Column(String(250), nullable=False)
 
-class Favorites(Base):
-    __tablename__ = 'favorites'
+class Favorite_Characters(Base):
+    __tablename__ = 'favorite_characters'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
@@ -52,8 +52,24 @@ class Favorites(Base):
     user = relationship(User)
     character_id = Column(Integer, ForeignKey('character.id'), nullable=True)
     character = relationship(Character)
+
+class Favorite_Planets(Base):
+    __tablename__ = 'favorite_planets'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=True)
     planet = relationship(Planet)
+
+class Favorite_Vehicles(Base):
+    __tablename__ = 'favorite_vehicles'
+    # Here we define columns for the table address.
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
     vehicle_id = Column(Integer, ForeignKey('vehicle.id'), nullable=True)
     vehicle = relationship(Vehicle)
 
